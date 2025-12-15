@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container section {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.container h3 {
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* 추천 영화 스타일 */
+.recommendList {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+/* 모든 영화 스타일 */
+.allMovieList {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;  /* 여러 줄로 표시 */
+}
+
+.allMovieList a {
+  width: calc((100% - 20px) / 5);
+}
+
+/* 공통 스타일 */
+.recommendList img,
+.allMovieList img {
+  width: 100%;     /* 부모 요소 너비에 100% 맞춤 */
+  height: auto;    /* 원본 이미지 비율 유지 */
+  display: block;  /* 인라인 요소의 여백 제거 */
+}
