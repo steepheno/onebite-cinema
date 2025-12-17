@@ -18,7 +18,7 @@ export const getServerSideProps = async (
 
 export default function Page({
   movies,
-}): InferGetServerSidePropsType<typeof getServerSideProps> {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className={style.container}>
       {movies.map((movie) => (
