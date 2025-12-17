@@ -1,18 +1,16 @@
-import { MovieData } from "@/types";
+import { MovieData } from '@/types';
 
 export default async function fetchRandomMovies(): Promise<MovieData[]> {
-  const url = 'http://localhost:12345/movie/random';
+  const url = 'https://onebite-cinema-api-main-pr.vercel.app/movie/random';
 
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error()
+      throw new Error();
     }
-    return await response.json()
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
   }
-  catch (error) {
-    console.error(error)
-    return []
-  }
-  
 }

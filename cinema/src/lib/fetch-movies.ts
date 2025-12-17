@@ -1,7 +1,7 @@
 import { MovieData } from '@/types';
 
 export default async function fetchMovies(q?: string): Promise<MovieData[]> {
-  let url = 'http://localhost:12345/movie';
+  let url = 'https://onebite-cinema-api-main-pr.vercel.app/movie';
 
   // 검색 결과 조회
   if (q) {
