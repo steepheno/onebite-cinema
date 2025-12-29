@@ -5,7 +5,7 @@ import { MovieData } from '@/types';
 /* 모든 영화 렌더링 */
 async function AllMovies() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/movie`, {
-    cache: 'no-store',  // 새로운 영화가 추가되면 빌드를 거쳐 새롭게 렌더링될 것이므로 굳이 캐시를 저장하지 않음
+    next: { revalidate: 60 * 60 * 24 },
   });
 
   if (!response.ok) {
@@ -27,7 +27,7 @@ async function AllMovies() {
 async function RecommendedMovies() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/movie/random`,
-    { next: { revalidate: 60 * 60 } },  // 1시간마다 추천 영화 변경되도록 캐시 설정
+    { next: { revalidate: 60 * 60 } }, // 1시간마다 추천 영화 변경되도록 캐시 설정
   );
 
   if (!response.ok) {
