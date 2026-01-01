@@ -1,60 +1,23 @@
-import MovieItem from '@/components/movie-itrem';
+import { Suspense } from 'react';
 import style from './page.module.css';
-import { MovieData } from '@/types';
-
-/* 모든 영화 렌더링 */
-async function AllMovies() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/movie`, {
-    next: { revalidate: 60 * 60 * 24 },
-  });
-
-  if (!response.ok) {
-    return <div>오류가 발생했습니다...</div>;
-  }
-
-  const allMovies: MovieData[] = await response.json();
-
-  return (
-    <div className={style.all_container}>
-      {allMovies.map((movie) => (
-        <MovieItem key={`all-${movie.id}`} {...movie} />
-      ))}
-    </div>
-  );
-}
-
-/* 추천 영화 렌더링 */
-async function RecommendedMovies() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/movie/random`,
-    { next: { revalidate: 60 * 60 } }, // 1시간마다 추천 영화 변경되도록 캐시 설정
-  );
-
-  if (!response.ok) {
-    return <div>오류가 발생했습니다...</div>;
-  }
-
-  const recommendedMovies: MovieData[] = await response.json();
-
-  return (
-    <div className={style.reco_conatiner}>
-      {recommendedMovies.slice(0, 3).map((movie) => (
-        <MovieItem key={`reco-${movie.id}`} {...movie} />
-      ))}
-    </div>
-  );
-}
+import AllMovies from '@/components/index/all-movies';
+import RecommendedMovies from '@/components/index/recommended-movies';
+import MovieListSkeleton from '@/components/skeleton/movie-list-skeleton';
 
 export default function Home() {
   return (
-    <div className={style.conatiner}>
+    <div className={style.container}>
       <section>
         <h3>지금 가장 추천하는 영화</h3>
-        <RecommendedMovies />
+        <Suspense fallback={<MovieListSkeleton rows={1} columns={3} />}>
+          <RecommendedMovies />
+        </Suspense>
       </section>
       <section>
         <h3>등록된 모든 영화</h3>
-        <AllMovies />
+        <Suspense fallback={<MovieListSkeleton rows={3} columns={5} />}>
+          <AllMovies />
+        </Suspense>
       </section>
     </div>
   );
