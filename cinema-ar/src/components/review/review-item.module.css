@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px 0px;
+}
+
+.writer_info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.date {
+  color: gray;
+  font-size: 14px;
+  align-content: center;
+}
+
+.content {
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  padding: 10px 0px;
+  border-radius: 5px;
+}
+
+.bottom_container {
+  display: flex;
+  gap: 10px;
+  color: gray;
+  font-size: 14px;
+}
+
+.delete_btn {
+  color: gray;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
