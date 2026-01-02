@@ -16,7 +16,7 @@ export default function MovieListSkeleton({
       style={{
         display: 'grid',
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
-        gap: 2,
+        gap: 3,
       }}
     >
       {Array.from({ length: total }).map((_, idx) => (
